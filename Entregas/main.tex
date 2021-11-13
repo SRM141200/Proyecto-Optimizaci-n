@@ -1,0 +1,192 @@
+\documentclass[11pt]{article}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.8 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.5 in}
+
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% ADD PACKAGES here:
+%
+
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage[document]{ragged2e}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,longtable, siunitx, float, graphicx, dcolumn, bm, fancyhdr, authblk, subcaption, caption, hyperref, multicol, amssymb, amsfonts,amsthm, wasysym, bbding, tabto, setspace, mdframed, algpseudocode}
+
+
+\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry}
+
+
+\lhead{\includegraphics[scale=0.7]{UR.png}}
+\rhead{\includegraphics[scale=0.7]{MACC.png}}
+
+\pagestyle{fancy}
+
+
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\Large\bfseries \@title \par}%
+    \vskip 1.5em%
+    {\normalsize
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+  \end{center}%
+  \par
+  \vskip 1.5em}
+\makeatother
+
+\newtheorem{theo}{Teorema}
+\newenvironment{theorem}
+  {\begin{mdframed}\begin{theo}}
+  {\end{theo}\end{mdframed}}
+
+\begin{document}
+
+\definecolor{blueMacc}{RGB}{61, 160, 250}
+\title{\textcolor{blueMacc}{Proyecto - Optimización en una aerolínea}}
+\author{David Alfonso Oviedo Salamanca, Santiago Rodríguez Morales, Germán David Plazas Cayachoa
+}
+\affil{Escuela de Ingeniería, Ciencia y Tecnología, Universidad del Rosario}
+
+
+\maketitle
+\thispagestyle{fancy}
+\section{Motivación}
+\justify
+Con el grave impacto que ha tenido la pandemia a nivel global, el sector de la aviación comercial se ha visto muy afectado. Debido al desplome en la demanda de vuelos, los ingresos se han visto fuertemente reducidos mientras que los altos costos de operación se han mantenido causando la pérdida de muchos empleos con el inminente recorte de gastos de operación y personal. Estas afectaciones han llegado a tal magnitud que incluso algunas compañías se encuentran al borde de la quiebra. Es por lo antes mencionado que las compañías aéreas retoman fuertemente la tarea de obtener los máximos beneficios y seguir recuperándose.
+
+El objetivo de este proyecto busca maximizar los ingresos de una aerolínea de transporte de carga teniendo en cuenta variables de decisión como lo son la cantidad de cajas a transportar y el número de trabajadores que operan en el proceso de carga.
+\justify
+
+\section{Problema seleccionado}
+
+La filial de carga de una aerolínea busca maximizar sus ingresos con sus aviones Airbus A330-200F que ha adquirido recientemente. La empresa obtiene ingresos por las mercancías que transporta, las cuales se clasifican dependiendo de su peso en tres tipos: grande, mediana o pequeña. La filial recibe \$14800 dólares por cada caja grande, \$9500 dólares por cada caja mediana y \$4600 dólares por cada caja pequeña. 
+
+Por otro lado, la empresa debe gastar en los salarios de los trabajadores. Inicialmente, la empresa cuenta con un único trabajador cuyo salario es de \$900 dólares. En caso de que se desee contratar trabajadores extra, cada uno tendría un salario de \$850 dólares. Además, otro gasto que se tiene es la tarifa por cada minuto transcurrido en el aeropuerto a la hora de cargar las cajas en el avión. Esta tarifa es de \$70 dólares por minuto. Teniendo un único trabajador, el proceso de carga para una caja grande toma 15 minutos, mientras que para cada caja mediana y pequeña es de 10 y 5 minutos respectivamente. Por cada trabajador extra contratado, el tiempo de carga disminuye en 2 minutos por cada caja grande, 1.5 
+
+\newpage
+\begin{itemize}
+    \item[\textcolor{white}{ESPACIO}] \textcolor{white}{ESPACIO}
+\end{itemize}
+
+minutos por cada caja mediana y 0.5 minutos por cada caja pequeña. Finalmente, la empresa gasta \$85000 dólares por el mantenimiento del avión.
+
+Para asegurar un trayecto de vuelo eficiente y seguro, existen limitaciones en cuanto al peso de la mercancía, el volumen que ocupan las cajas y la cantidad de cajas transportadas. El avión como máximo, puede transportar 70 toneladas de peso. Cada caja pequeña pesa como máximo 1588 kg, cada caja mediana, pesa entre 1589 kg y 3175 kg y cada caja grande entre 3176 kg y 8446 kg. En cuanto al volumen, el avión tiene una capacidad máxima de $470 m^3$. Las cajas pequeñas ocupan 4.3 $m^3$, las medianas 8.3 $m^3$ y las grandes 26.8 $m^3$. Finalmente, el avión puede llevar $27$ cajas como máximo. 
+
+Con el fin de atender las demandas de diversos clientes, el avión debe transportar entre 1 y 8 cajas grandes, entre 3 y 10 cajas medianas y entre 5 y 13 cajas pequeñas. Finalmente, para evitar exceso de personal en el proceso de carga, se pueden contratar hasta 6 trabajadores extra. 
+
+Para el planteamiento de la función lineal 
+
+
+\textbf{Variables de decisión:}
+
+\begin{itemize}
+ \item $x_1$: Número de cajas grandes a transportar.
+ \item $x_2$: Número de cajas medianas a transportar.
+ \item $x_3$: Número de cajas pequeñas a transportar.
+ \item $y_1$: Número de trabajadores extra a contratar.
+\end{itemize}
+
+\textbf{Conjunto de restricciones:}
+\begin{itemize}
+ \item $8446x_1+3175x_2+1588x_3\leq 70000$: Peso de cajas a transportar en el avión no debe superar las 70 toneladas.
+ \item $26.8x_1 + 8.3x_2 + 4.3x_3 \leq 470$: Volumen total de cajas transportadas no debe superar la capacidad del avión de 470$m^3$.
+ \item $x_1 + x_2 + x_3 \leq 27$: Número máximo de cajas que se pueden transportar.
+ \item $y_1 \leq 6$: Cantidad de trabajadores extra que se pueden contratar.
+ \item $1 \leq x_1 \leq 8$: Cantidad de cajas grandes que se pueden transportar.
+ \item $3 \leq x_2 \leq 10$: Cantidad de cajas medianas que se pueden transportar.
+ \item $5 \leq x_3 \leq 13$: Cantidad de cajas pequeñas que se pueden transportar.
+\end{itemize}
+
+
+\newpage
+\begin{itemize}
+    \item[\textcolor{white}{ESPACIO}] \textcolor{white}{ESPACIO}
+\end{itemize}
+
+\section {Planteamiento}
+\subsection{Problema no lineal}
+\begin{eqnarray}
+    max \hspace{0.2cm} 14800x_{1} + 9500x_2 + 4600x_3 - [\hspace{0.1cm}70\left(15 - 2y_1 \right)x_1 + 70\left(10 - 1.5y_1 \right)x_2   \nonumber\\ 
+    + 70\left(5 - 0.5y_1 \right)x_3 + 850y_1 + 85000 + 900\hspace{0.2cm}]  \nonumber
+\end{eqnarray}
+%\[max \hspace{0.2cm} 14800x_{1} + 9500x_2 + 4600x_3 \hspace{0.2cm}- \hspace{0,2cm}[70\left(15 - 2y_1 \right)x_1 + 70\left(10 - 1.5y_1 \right)x_2 + 70\left(5 - 0.5y_1 \right)x_3 + 850y_1 + 85000 + 900]\]
+
+\[s.a \hspace{0.2cm}8446x_1 + 3175x_2 + 1588x_3 \leq 70000\]
+\[26.8x_1 + 8.3x_2 + 4.3x_3 \leq 470\]
+\[x_1 + x_2 + x_3 \leq 27\]
+\[1 \leq x_1 \leq 8\]
+\[3 \leq x_2 \leq 10\]
+\[5 \leq x_3 \leq 13\]
+\[ 0 \leq y_1 \leq 6\] 
+\justify
+
+\subsection{Problema lineal}
+
+En un escenario diferente, la empresa desea conocer cómo maximizar sus ingresos si tuviese exactamente tres trabajadores extra contratados. Siendo así, la empresa estima que durante el proceso de carga se gastan 9 minutos por cada caja grande, 5.5 minutos por cada caja mediana y 3.5 minutos por cada caja pequeña. Por lo tanto:
+
+
+\begin{eqnarray}
+    max \hspace{0.2cm} 14800x_{1} + 9500x_2 + 4600x_3 - [\hspace{0.1cm}70\left(9 \right)x_1 + 70\left(5.5 \right)x_2  + 70\left(3.5\right)x_3  \nonumber\\ 
+    + 850\left(3 \right) + 85000 + 900\hspace{0.2cm}]  \nonumber
+\end{eqnarray}
+
+\[s.a \hspace{0.2cm}8446x_1 + 3175x_2 + 1588x_3 \leq 70000\]
+\[26.8x_1 + 8.3x_2 + 4.3x_3 \leq 470\]
+\[x_1 + x_2 + x_3 \leq 27\]
+\[1 \leq x_1 \leq 8\]
+\[3 \leq x_2 \leq 10\]
+\[5 \leq x_3 \leq 13\]
+\justify
+
+\newpage
+\begin{itemize}
+    \item[\textcolor{white}{ESPACIO}] \textcolor{white}{ESPACIO}
+\end{itemize}
+
+\section{Resultados preliminares e implemetación del problema lineal}
+
+\subsection{Código}
+{\Large
+\begin{itemize}
+    \item \fcolorbox{red}{white}{\href{https://github.com/SRM141200/Proyecto-Optimizaci-n/blob/main/Implementaciones/CODIGO_PROBLEMA_LINEAL.m}{Código Matlab}}
+
+\end{itemize}}
+
+\subsection{Resultados Preliminares}
+
+Debido a que las variables de decisión trabajadas en este problema deben ser enteras, realizamos una aproximación subóptima respecto a la variable $x_1$, con lo cual se obtiene la siguiente solución: 
+
+\begin{itemize}
+
+
+
+    \item $x_1 = 2$
+    
+    \item $x_2 = 10$
+    
+    \item $x_3 = 13$
+    
+\end{itemize}
+
+A primera instancia notamos que llevar muchas cajas grandes, a pesar de ser las mejor pagadas, no son muy rentables de transportar. Lo anterior puede deberse a la alta ocupación de volumen de las cajas grandes y el gran tiempo que se tarda en cargar las cajas de esta categoría. En contraste, las cajas de tamaño mediano y pequeño son rentables de llevar a pesar de no ser tan bien pagas. A futuro, se desea hacer una comparación con el problema no lineal en donde el número de trabajadores extra no está especificado.
+
+
+\end{document}
