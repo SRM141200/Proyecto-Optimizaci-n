@@ -6,7 +6,7 @@ Descargar el archivo GradienteProyectado.m y ejecutar este.
 > necesarias para implementar el metodo de Gradiente 
 > Proyectado. 
 
-> NoLineal-fmincon NO debe ser ejecutado. Fue una implementación
+> NoLineal-fmincon fue una implementación
 > de prueba.
 
 > Intentos-Barrera-Penalidad
